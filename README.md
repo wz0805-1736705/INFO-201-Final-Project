@@ -24,6 +24,7 @@ We will use a **.csv** file from [Kaggle](https://www.kaggle.com/) as the source
 **5. What types of data-wrangling (reshaping, reformatting, etc.) will you need to do to your data?**
 
 For our project, we will use a bunch of data-wrangling to demonstrate our data. As we said above, the dataset we are going to use is about the Airbnb in the Seattle area, and it contains room types, locations, reviews, price, etc. Thus, we are going to _reshape_ the data from raw format. We will rank the data based on different column properties, thus, we may use **extraction**, **parsing**, **filtering**, and **selecting** to our data in the group of the interests. Besides, we will make an interactive map to show the differences between particular data in different areas. To achieve this goal, we are going to _reformat_ the data in a group of different areas. What’s more, we may also **mutate** new columns to the data set we already have to show the new property. 
+
 **6. What (major/new) libraries will be using in this project (no need to list common libraries that are used in many projects such as dplyr)**
 
 The additional libraries we are going to use will mainly help us to draw different plots and graph, including: 
