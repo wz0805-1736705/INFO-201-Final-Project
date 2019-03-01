@@ -4,7 +4,7 @@
 
 **1. What is the dataset you'll be working with?  Please include background on who collected the data, where you accessed it, and any additional information we should know about how this data came to be.**
 
-The dataset we are working with is the [**Seattle Airbnb dataset**]((https://www.kaggle.com/shanelev/seattle-airbnb-listings#seattle_01.csv)) which is from _Shane Levine_ on Kaggle. The dataset was scrapped on December 19th, 2018 that contains about 8000 listings of current Airbnb listings in Seattle, and it was created with the help of [Tom Slee’s Airbnb Data collection codebase](https://github.com/tomslee/airbnb-data-collection). The purpose is to gain insight into Seattle’s short-term rental market. The information in it includes locations, prices, reviews, room types, and so on. 
+The dataset we are working with is the [Seattle Airbnb dataset]((https://www.kaggle.com/shanelev/seattle-airbnb-listings#seattle_01.csv)) which is from _Shane Levine_ on Kaggle. The dataset was scrapped on December 19th, 2018 that contains about 8000 listings of current Airbnb listings in Seattle, and it was created with the help of [Tom Slee’s Airbnb Data collection codebase](https://github.com/tomslee/airbnb-data-collection). The purpose is to gain insight into Seattle’s short-term rental market. The information in it includes locations, prices, reviews, room types, and so on. 
 
 **2. Who is your target audience?  Depending on the domain of your data, there may be a variety of audiences interested in using the dataset.  You should hone in on one of these audiences.**
 
