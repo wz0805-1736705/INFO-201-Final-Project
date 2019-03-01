@@ -17,6 +17,8 @@ This dataset has a variety of data ranging from ratings, room types, price to lo
 **Question 2:** Which listing has the highest/lowest rating?
 **Question 3:** Which listing is the most/least expensive?
 
+## Technical Description
+
 **4. How will you be reading in your data (i.e., are you using an API, or is it a static .csv/.json file)?**
 
 We will use a **.csv** file from [Kaggle](https://www.kaggle.com/) as the source of this project. We will start by viewing it in excel to analyze what kind of pages we can create with the data. Then use data manipulation tools such as **dplyr/tidyr** and additional packages to have a visualize dataset. Finally, R Markdown everything to create an HTML file.
