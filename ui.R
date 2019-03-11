@@ -50,7 +50,7 @@ Olympics Games to see statistics of medal
 ),
   #####Hedy####
 tabPanel(
-  "Trends of Personal Information)",
+  "Trends of Personal Information",
   titlePanel("Trends of Athletes' Personal Information"),
   sidebarLayout(
     sidebarPanel(

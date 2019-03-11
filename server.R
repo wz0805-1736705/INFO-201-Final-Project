@@ -46,15 +46,15 @@ plot_m <- ggplot(filtered(), aes(x = NOC, y = count, fill = Medal)) +
 plot_m
 #########
 }, height = 800, width = 800)
+#Hedy#
+height_weight_Age_info <- dataset %>%
+  select(Year, Height, Weight, Age, Sex)%>%
+  filter(!is.na(Height) & !is.na(Weight) & !is.na(Age))
+
+plot_data <- height_weight_Age_info %>% 
+  group_by(Year, Sex) %>%
+  summarise("Height" = mean(Height), "Weight" = mean(Weight), "Age" = mean(Age))
 output$graph <- renderPlot({
-  newData <- gameDate %>%
-    filter(Year >= 1980)
-  height_weight_Age_info <- newData %>%
-    select(Year, Height, Weight, Age, Sex)%>%
-    filter(!is.na(Height) & !is.na(Weight) & !is.na(Age))
-  plot_data <- height_weight_Age_info %>% 
-    group_by(Year, Sex) %>%
-    summarise("Height" = mean(Height), "Weight" = mean(Weight), "Age" = mean(Age))
   if(input$gender == "Both") {
     p <- ggplot(data = plot_data, mapping = aes_string(x=plot_data$Year, y=input$Type, 
                                                        group="Sex", color= "Sex")) +
@@ -84,4 +84,4 @@ output$graph <- renderPlot({
   return(p)
 })
 }
-shinyApp(ui = my.ui, server = server)
+# shinyApp(ui = my.ui, server = server)
