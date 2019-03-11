@@ -10,29 +10,6 @@ library("dplyr")
 
 ui <- fluidPage(
 navbarPage("Olympics Games Interactive Statistics",
-           
-###GRANT#### 
-    tabPanel("Sports distribution by countries",
-      titlePanel("Analysis of Sports Distribution by Countries at the Olympics"),
-      
-      sidebarLayout(
-        sidebarPanel(
-          selectInput("gender", "Choose a gender", 
-                      choices = c("Male", "Female"),
-                      selected = "Male"),
-          selectInput("sport", "Choose a sport", 
-                      choices = c("Athletics", "Badminton", "Basketball", "Boxing", "Cross country skiing", "Football", "Gymnastics", "Ice hockey", "Rowing", "Speed Skating", "Swimming", "Sailing"),
-                      selected = "Athletics"),
-          helpText("These two drop down menu options allows you to visualize the male and female sports distributions by countries.")
-         ),
-          h3("Summary:"),
-          p("") 
-         ),
-        
-        mainPanel(
-          plotOutput("bargraph")
-        )
-      ), 
 
 ####CARRIE####
     tabPanel("Medal Count of Gender at the Olympics",
@@ -71,7 +48,7 @@ Olympics Games to see statistics of medal
 )
 )
 ),
-  ##########Hedy####
+  #####Hedy####
 tabPanel(
   "Trends of Personal Information)",
   titlePanel("Trends of Athletes' Personal Information"),
