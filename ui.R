@@ -23,9 +23,8 @@ navbarPage("Olympics Games Interactive Statistics",
           selectInput("sport", "Choose a sport", 
                       choices = c("Athletics", "Badminton", "Basketball", "Boxing", "Cross country skiing", "Football", "Gymnastics", "Ice hockey", "Rowing", "Speed Skating", "Swimming", "Sailing"),
                       selected = "Athletics"),
-          h3("Background:"),
-          p("In this interactive bar graph, there are dropdown menus that allow for the selection of TWO different anime series to compare between. On the title of the graph, the overall average user rating of the anime is listed for perspective comparison."),
-          
+          helpText("These two drop down menu options allows you to visualize the male and female sports distributions by countries.")
+         ),
           h3("Summary:"),
           p("") 
          ),
