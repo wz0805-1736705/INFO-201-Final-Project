@@ -2,9 +2,9 @@ library("plotly")
 library("shiny")
 library("ggplot2")
 library("dplyr")
-library("styler")
-library("lintr")
-#style_file("ui.R")
+# library("styler")
+# library("lintr")
+# style_file("ui.R")
 # lint("ui.R")
 
 
@@ -30,7 +30,7 @@ navbarPage("Olympics Games Interactive Statistics",
          ),
         
         mainPanel(
-          plotlyOutput("bargraph")
+          plotOutput("bargraph")
         )
       ), 
 

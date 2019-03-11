@@ -5,8 +5,9 @@ library("styler")
 library("lintr")
 #style_file("ui.R")
 #lint("ui.R")
+source("ui.R")
 
-shinyApp(ui = ui, server = server)
+
 dataset <- read.csv("data/athlete_events.csv", stringsAsFactors = F)
 dataset <- dataset%>%
   filter(Year >= "1980")
@@ -83,4 +84,4 @@ output$graph <- renderPlot({
   return(p)
 })
 }
-
+shinyApp(ui = my.ui, server = server)
