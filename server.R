@@ -45,5 +45,42 @@ plot_m <- ggplot(filtered(), aes(x = NOC, y = count, fill = Medal)) +
 plot_m
 #########
 }, height = 800, width = 800)
+output$graph <- renderPlot({
+  newData <- gameDate %>%
+    filter(Year >= 1980)
+  height_weight_Age_info <- newData %>%
+    select(Year, Height, Weight, Age, Sex)%>%
+    filter(!is.na(Height) & !is.na(Weight) & !is.na(Age))
+  plot_data <- height_weight_Age_info %>% 
+    group_by(Year, Sex) %>%
+    summarise("Height" = mean(Height), "Weight" = mean(Weight), "Age" = mean(Age))
+  if(input$gender == "Both") {
+    p <- ggplot(data = plot_data, mapping = aes_string(x=plot_data$Year, y=input$Type, 
+                                                       group="Sex", color= "Sex")) +
+      geom_point() +
+      geom_line() +
+      xlab("Year") +
+      labs(paste0(title="The Trendline of Athletes' ", input$Type))
+  }else if(input$gender == "F") {
+    new_data <- plot_data %>%
+      filter(Sex == "F")
+    p <- ggplot(data = new_data, mapping = aes_string(x=new_data$Year, y=input$Type, 
+                                                      group="Sex", color= "Sex")) +
+      geom_point() +
+      geom_line() +
+      xlab("Year") +
+      labs(paste0(title="The Trendline of Athletes' ", input$Type))
+  }else{
+    new_data <- plot_data %>%
+      filter(Sex == "M")
+    p <- ggplot(data = new_data, mapping = aes_string(x=new_data$Year, y=input$Type, 
+                                                      group="Sex", color= "Sex")) +
+      geom_point() +
+      geom_line() +
+      xlab("Year") +
+      labs(paste0(title="The Trendline of Athletes' ", input$Type))
+  }
+  return(p)
+})
 }
 

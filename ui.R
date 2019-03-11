@@ -32,8 +32,7 @@ navbarPage("Olympics Games Interactive Statistics",
         mainPanel(
           plotlyOutput("bargraph")
         )
-      )
-    ), 
+      ), 
 
 ####CARRIE####
     tabPanel("Medal Count of Gender at the Olympics",
@@ -71,7 +70,37 @@ Olympics Games to see statistics of medal
         
 )
 )
-)
-  ##########
+),
+  ##########Hedy####
+tabPanel(
+  "Trends of Personal Information)",
+  titlePanel("Trends of Athletes' Personal Information"),
+  sidebarLayout(
+    sidebarPanel(
+      em("While there is huge development of society in the past about thirty years, the Olympic game 
+         plays more important role in showing the strengh and energy of each country. Not only do better athletes 
+         come to the game to represent their countries, but also the better trainings are provided. There is a
+         trendline to show the change of height, weight, and age of athletes in different gender 
+         for the sum of all countries since the game of 1980 to
+         2016."),
+      ("Choose a type of personal information below to see the trends"),
+      selectInput(
+        "Type", "Choose a Type： ", choices = colnames(plot_data[, 3:5])
+      ),
+      selectInput("gender", "Select the gender: ", choices = c("M", "F", "Both"),
+                  selected = 1
+      )
+      ),
+    mainPanel(plotOutput("graph"),
+              strong("Summary"),
+              ("For the three types of personal information, they all have an increased trends for both 
+               male and female athletes. From this data visualization, we can observe an increasement
+               of athletes' physical strength, while height and weight are both go up in average. In addtion, 
+               the average age of athletes are increasing also. It suggets that more older athletes get 
+               involved in Olympic games, not only because more older people are healthy enough to join, 
+               but people keep their enthusiasm on sports game no matter if they get older or not.")
+              )
+              )
+              )
   )
 )
