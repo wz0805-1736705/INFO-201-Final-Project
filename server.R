@@ -32,16 +32,18 @@ filtered <- reactive({
 })
 
 output$medalplot <- renderPlot({
+# fig.height = 10, fig.width = 5
 plot_m <- ggplot(filtered(), aes(x = NOC, y = count, fill = Medal)) +
   geom_col(width = 0.8) +
   coord_flip() + 
   ggtitle(paste0("Medal Counts for ", input$option, 
                  " at the ",input$year," Olympics")) +
-  scale_fill_manual(values = c("darkgoldenrod4", "gold1", "gray62") )
-  theme(plot.title = element_text(hjust = 0.5),
-       axis.text.y = element_text(size=6))
+  scale_fill_manual(values = c("darkgoldenrod4", "gold1", "gray62")) +
+  theme(plot.title = element_text(size = 15, face = "bold"),
+       axis.text.y = element_text(size = 13),
+       axis.text.x = element_text(size = 13))
 plot_m
 #########
-})
+}, height = 800, width = 800)
 }
 

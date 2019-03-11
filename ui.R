@@ -41,35 +41,38 @@ navbarPage("Olympics Games Interactive Statistics",
       titlePanel("Analysis of Medal Count of Gender at the Olympics"),
         sidebarLayout(
   sidebarPanel(
-                   selectInput("year",
-                               label = h4("Select the Games"),
-                               choices = c(
-                                 "1980", "1984", "1988", "1992", "1996",
-                                 "2000", "2004", "2008", "2012", "2016"
-                               ),
-                               selected = 1
-                   ),
-                   selectInput("option",
-                               label = h4("Select the gender"),
-                               choices = c("M", "F", "Both"),
-                               selected = 1
-                   ),
-                   helpText("This interactive allows you to select one
-                            Olympics Games to see statistics of medal 
-                            of female, male or both.")
-                   ),
-                 mainPanel(
-                   plotOutput("medalplot"),
-                   h3("Summary"),
-                   p("Each bar on this graph illustrates the medal count of
-                     each country in the specific year of the Olympics Games.
-                     We can see a growing number of countries had female athletes
-                     paticiapted in the Olympics and earned more medals in the game.
-                     It is also worth noticing that USA has the largest number of medals
-                     after 1996.")
-                   )
-                 )
-    )
+    selectInput("year",
+                label = h4("Select the Games"),
+                choices = c("1980", "1984", "1988", "1992", "1996",
+                            "2000", "2004", "2008", "2012", "2016"
+                            ),
+                selected = 1
+                ),
+    selectInput("option",
+                label = h4("Select the gender"),
+                choices = c("M", "F", "Both"),
+                selected = 1
+                ),
+helpText("This interactive allows you to select one
+Olympics Games to see statistics of medal 
+           of female, male or both.")
+),
+      mainPanel(
+        h3("Summary"),
+        p("Each bar on this graph illustrates the medal count of
+          each country in the specific year of the Olympics Games.
+          We can see a notably growing number of countries with more
+          female athletics paticiapted in the Olympics and earned
+          more medals in the game. However, there is still an inequal
+          number of participation of female and male athletics.
+          It is also worth noticing that USA has the largest number of medals
+          after 1996, and women athletics were earning almost equal number of medals,
+          sometimes they have earned more compared to male athletics did."),
+        plotOutput("medalplot")
+        
+)
+)
+)
   ##########
   )
 )
