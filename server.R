@@ -14,7 +14,33 @@ dataset <- dataset%>%
   filter(Year >= "1980")
 
 server <- function(input, output) {
-
+#GRANT#
+  filtered_data <- reactive ({
+    filtered <- dataset %>%
+      filter(Sex == input$sex,
+             Sport == input$sport) %>%
+      arrange(Team) %>% 
+      group_by(Team) %>%
+      summarize(count = n()) %>% 
+      top_n(100, wt=count)
+    
+    return(filtered)
+  })
+  
+  output$bargraph <- renderPlot({
+    plot_m <- ggplot(filtered_data(), aes(x = Team, y = count)) +
+      geom_col(width = 1) +
+      coord_flip() +
+      ggtitle(paste0("Sports distribution for",input$sex,
+                     "of",input$sport)) +
+      scale_fill_manual(value = c("red")) +
+      theme(plot.title = element_text(size = 15, face = "bold"),
+            axis.text.y = element_text(size = 13),
+            axis.text.x = element_text(size = 13))
+    return(plot_m)
+    #########
+  }, height = 800, width = 860)
+  
 #CARRIE#
 filtered <- reactive({
   filtered <- dataset %>%
