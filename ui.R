@@ -101,16 +101,16 @@ navbarPage("Olympics Games Interactive Statistics",
                             label = h4("Select the Games"),
                             choices = c("1980", "1984", "1988", "1992", "1996",
                                         "2000", "2004", "2008", "2012", "2016")
-                            , selected = 1
+                            , selected = "2016"
             ),
-            selectInput("option",
-                        label = h4("Select the gender"),
-                        choices = c("M", "F", "Both"),
-                        selected = 1
+            selectInput("country",
+                        label = h4("Select the country"),
+                        choices = region_data$NOC,
+                        selected = "USA"
             ),
-            helpText("This interactive allows you to select one Olympics Games
-                     to see statistics of medalof female, male or both from
-                     1980 to 2016."),
+            helpText("This interactive allows you to select one year of
+                      Olympics Games from 1980 to 2016and one country to
+                      see statistics of medal of female and male."),
             style = "margin-left: 75px; margin-right: 75px;"
             ),
             style = "height: 350px; background-color: #f5f5f5;
@@ -127,15 +127,15 @@ navbarPage("Olympics Games Interactive Statistics",
               div(br(), h2("Summary"), style = "margin-left: 45px"),
               div(br(),
                   p("Each bar on this graph illustrates the medal count of
-                    each country in the specific year of the Olympics Games.
+                    the specific country in the specific year of the Olympics Games.
                     We can see a notably growing number of countries with more
-                    female athletes paticiapted in the Olympics and earned
-                    more medals in the game. However, there is still an inequal
-                    number of participation of female and male athletes.It is
-                    also worth noticing that USA has the largest number of
-                    medals after 1996, and women athletes were earning almost
-                    equal number of medals,sometimes they have earned more
-                    compared to male athletes did."),
+                    female athletics paticiapted in the Olympics and earned
+                    more medals in the game. It is also worth noticing that
+                    women athletics from USA were earning more medals compared
+                    to male athletics did since 2000. For Canada, female athletics
+                    did better than male after 2008 with significant difference of
+                    the total medals in 2016. Also, countries such as India
+                    earned 2 medals in the 2016 Olympics all by women athletics."),
                   style = "margin-left: 45px; margin-right: 45px; font-size: 15px;
                            text-indent: 20px"),
               style = "height: 390px; background-color: #f5f5f5; border-radius:

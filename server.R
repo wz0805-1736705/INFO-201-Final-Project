@@ -9,6 +9,7 @@ source("ui.R")
 
 
 dataset <- read.csv("data/athlete_events.csv", stringsAsFactors = F)
+region_data <- read.csv("data/noc_regions.csv", stringsAsFactors = F)
 dataset <- dataset%>%
   filter(Year >= "1980")
 
@@ -17,25 +18,17 @@ server <- function(input, output) {
 #CARRIE#
 filtered <- reactive({
   filtered <- dataset %>%
-  filter(Sex == input$option,
+  filter(NOC == input$country,
          Year == input$year, !is.na(Medal)) %>%
-  group_by(NOC, Medal)%>%
+  group_by(Sex, Medal)%>%
   arrange(NOC) %>%
   summarize(count = length(Medal))
-  
-  if(input$option == "Both"){
-    filtered <- dataset %>%
-      filter(Year == input$year, !is.na(Medal)) %>%
-      group_by(NOC, Medal)%>%
-      arrange(NOC) %>%
-      summarize(count = length(Medal))
-  }
+
   return(filtered)
 })
 
 output$medalplot <- renderPlot({
-# fig.height = 10, fig.width = 5
-plot_m <- ggplot(filtered(), aes(x = NOC, y = count, fill = Medal)) +
+plot_m <- ggplot(filtered(), aes(x = Sex, y = count, fill = Medal)) +
   geom_col(width = 0.8) +
   coord_flip() + 
   ggtitle(paste0("Medal Counts for ", input$option, 
