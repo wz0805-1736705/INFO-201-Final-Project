@@ -6,78 +6,196 @@ library("dplyr")
 # library("lintr")
 # style_file("ui.R")
 # lint("ui.R")
+height_weight_Age_info <- dataset %>%
+  select(Year, Height, Weight, Age, Sex)%>%
+  filter(!is.na(Height) & !is.na(Weight) & !is.na(Age))
 
+plot_data <- height_weight_Age_info %>% 
+  group_by(Year, Sex) %>%
+  summarise("Height" = mean(Height), "Weight" = mean(Weight), "Age" = mean(Age))
 
 ui <- fluidPage(
 navbarPage("Olympics Games Interactive Statistics",
-
+#####Alex######
+    tabPanel("Introduction",
+      titlePanel(
+             tags$html(tags$body(
+              tags$link(rel = "stylesheet", type = "text/css", href = "test.css"),
+              div(id = "Header",
+                       h1("Olympics Games Interactive Statistics Tool")),
+              div(id = "LeftPanel",
+                       img(src="olympic-games.png")
+                       ),
+              div(id = "RightPanel",
+                h2("About this project", style = "color: #C44B4F"),
+                p("The Olympic Games are leading international sporting 
+                       events being held in summer and winter, and thousands
+                       of athletes all over the world participate in a variety
+                       of competitions. Both male and female athletes bring us
+                       exciting games for audience.", style = "margin-left:
+                       40px;text-indent: 20px;"),
+                p("In our project, our team members are going to have an
+                       in-depth study for both male and femal athletes from
+                       1980 to 2016 Oylmpic Games. We will compare them from
+                       three different aspects,",
+                       strong("Personal Information (Height, Weight, Age)"
+                                   ), ",",
+                       strong("Medal Numbers (Gold, Silver, Bronze)"),
+                       ", and",
+                       strong("Top 10 Most Popular Sports"), 
+                       style = "margin-left: 40px;text-indent: 20px;"),
+                p("Our project draws on data from", 
+                       a("120 years of Olympic history: athletes and results",
+                              href = "https://www.kaggle.com/heesoo37/120
+                              -years-of-olympic-history-athletes-and-results",
+                              style = "color: #145DA0;"),
+                       "from Kaggle user",
+                       a("rgriffin", 
+                              href = "https://www.kaggle.com/heesoo37",
+                              style = "color: #145DA0;"),
+                       "which includes infromation on athletes from 1896 to
+                       2016, and we filter the dataset for those after 1980
+                       for more recent, modern Olympic Games.",
+                       style = "margin-left: 40px; text-indent: 20px;"),
+                div(id = "RightBottom",
+                         div(id = "image2",
+                                  img(src = "gender-image.png",
+                                           align = "right", width = "500px"
+                                           )),
+                         h2("Authors", style = "color: #C44B4F"),
+                         tags$ul(
+                           tags$li(a("Anjie Yao",
+                                    href = "mailto:anjieyao@uw.edu")),
+                           tags$li(a("Zhan Wu",
+                                          href = "mailto:wz0805@uw.edu")),
+                           tags$li(a("Hanjin Jiang",
+                                          href = "mailto:hedyj@uw.edu")),
+                           tags$li(a("Shibo Yang",
+                                          href = "mailto:gryang@uw.edu")),
+                           style = "list-style-type: circle;text-indent: 20px;
+                                    margin-left: 23px;")
+                         ),
+                br(),
+                p("Source Code: ",
+                       a("GitHub",
+                              href = "https://github.com/wz0805-1736705/
+                              INFO-201-Final-Project",
+                              style = "color: #145DA0;"))
+                )
+              )
+             ))
+      ),
 ####CARRIE####
     tabPanel("Medal Count of Gender at the Olympics",
-      titlePanel("Analysis of Medal Count of Gender at the Olympics"),
-        sidebarLayout(
-  sidebarPanel(
-    selectInput("year",
-                label = h4("Select the Games"),
-                choices = c("1980", "1984", "1988", "1992", "1996",
-                            "2000", "2004", "2008", "2012", "2016"
-                            ),
-                selected = 1
-                ),
-    selectInput("option",
-                label = h4("Select the gender"),
-                choices = c("M", "F", "Both"),
-                selected = 1
-                ),
-helpText("This interactive allows you to select one
-Olympics Games to see statistics of medal 
-           of female, male or both.")
-),
-      mainPanel(
-        h3("Summary"),
-        p("Each bar on this graph illustrates the medal count of
-          each country in the specific year of the Olympics Games.
-          We can see a notably growing number of countries with more
-          female athletics paticiapted in the Olympics and earned
-          more medals in the game. However, there is still an inequal
-          number of participation of female and male athletics.
-          It is also worth noticing that USA has the largest number of medals
-          after 1996, and women athletics were earning almost equal number of medals,
-          sometimes they have earned more compared to male athletics did."),
-        plotOutput("medalplot")
-        
-)
-)
-),
+      titlePanel(
+        tags$body(
+          tags$link(rel = "stylesheet", type = "text/css", href = "test.css"),
+          tags$div(id = "Header",
+                   tags$h1("Analysis of Medal Count of Gender at the Olympics")
+                   )
+        )
+      ),
+          fluidRow(column(
+            width = 4,
+            div(div(br(), br(), selectInput("year",
+                            label = h4("Select the Games"),
+                            choices = c("1980", "1984", "1988", "1992", "1996",
+                                        "2000", "2004", "2008", "2012", "2016")
+                            , selected = 1
+            ),
+            selectInput("option",
+                        label = h4("Select the gender"),
+                        choices = c("M", "F", "Both"),
+                        selected = 1
+            ),
+            helpText("This interactive allows you to select one Olympics Games
+                     to see statistics of medalof female, male or both from
+                     1980 to 2016."),
+            style = "margin-left: 75px; margin-right: 75px;"
+            ),
+            style = "height: 350px; background-color: #f5f5f5;
+                     border-radius: 25px; border-right: 3px solid #C44B4F;
+                     border-bottom: 3px solid #C44B4F;")
+            ),
+            column(
+              width = 8,
+              plotOutput("medalplot"))
+          ),
+          fluidRow(column(
+            width = 4,
+            div(
+              div(br(), h2("Summary"), style = "margin-left: 45px"),
+              div(br(),
+                  p("Each bar on this graph illustrates the medal count of
+                    each country in the specific year of the Olympics Games.
+                    We can see a notably growing number of countries with more
+                    female athletes paticiapted in the Olympics and earned
+                    more medals in the game. However, there is still an inequal
+                    number of participation of female and male athletes.It is
+                    also worth noticing that USA has the largest number of
+                    medals after 1996, and women athletes were earning almost
+                    equal number of medals,sometimes they have earned more
+                    compared to male athletes did."),
+                  style = "margin-left: 45px; margin-right: 45px; font-size: 15px;
+                           text-indent: 20px"),
+              style = "height: 390px; background-color: #f5f5f5; border-radius:
+                       25px; border-right: 3px solid #C44B4F; border-bottom:
+                       3px solid #C44B4F;")
+            )
+          )
+          ),
   #####Hedy####
-tabPanel(
-  "Trends of Personal Information",
-  titlePanel("Trends of Athletes' Personal Information"),
-  sidebarLayout(
-    sidebarPanel(
-      em("While there is huge development of society in the past about thirty years, the Olympic game 
-         plays more important role in showing the strengh and energy of each country. Not only do better athletes 
-         come to the game to represent their countries, but also the better trainings are provided. There is a
-         trendline to show the change of height, weight, and age of athletes in different gender 
-         for the sum of all countries since the game of 1980 to
-         2016."),
-      ("Choose a type of personal information below to see the trends"),
-      selectInput(
-        "Type", "Choose a Type： ", choices = colnames(plot_data[, 3:5])
+    tabPanel("Trends of Personal Information",
+      tags$body(
+        tags$link(rel = "stylesheet", type = "text/css", href = "test.css"),
+        tags$div(id = "Header",
+                 tags$h1("Trends of Athletes' Personal Information")
+           )
+         ),
+  fluidRow(
+    column(width = 4,
+      div(div(br(), br(), br(),
+      selectInput("Type", "Choose a Type:",
+                  choices = colnames(plot_data[, 3:5])
       ),
-      selectInput("gender", "Select the gender: ", choices = c("M", "F", "Both"),
-                  selected = 1
-      )
+      selectInput("gender", "Select the gender: ",
+                  choices = c("M", "F", "Both"),
+                  selected = 1),
+      helpText("This interactive allows you to select the type of personal 
+               information(height, weight, age) and gender to see the trends
+               from 1980 to 2016"),
+      style = "margin-left: 75px; margin-right: 75px;"
       ),
-    mainPanel(plotOutput("graph"),
-              strong("Summary"),
-              ("For the three types of personal information, they all have an increased trends for both 
-               male and female athletes. From this data visualization, we can observe an increasement
-               of athletes' physical strength, while height and weight are both go up in average. In addtion, 
-               the average age of athletes are increasing also. It suggets that more older athletes get 
-               involved in Olympic games, not only because more older people are healthy enough to join, 
-               but people keep their enthusiasm on sports game no matter if they get older or not.")
-              )
-              )
+      style = "height: 350px; background-color: #f5f5f5;
+                  border-radius: 25px; border-right: 3px solid #C44B4F;
+                  border-bottom: 3px solid #C44B4F;")),
+    column(
+      width = 8,
+      div(plotOutput("graph")))
+  ),
+  fluidRow(column(
+    width = 4,
+    div(
+      div(br(), h2("Summary"), style = "margin-left: 45px"),
+      div(br(),
+          p("The trendlines show the change of height, weight, and
+            age of athletes in different gender for all the countries.
+            It shows an increasing trends for all three personal info for
+            both genders. We can observe an increasement of athletes' physical
+            strength, height and weight, are both going up in average; in
+            addition, the average age is also increasing, which suggests
+            that more older athletes get involved in Olympic games, not
+            only because more older people are healthy enough to join, 
+            but people keep their enthusiasm on sports game no matter if
+            they get older or not."),
+          style = "margin-left: 45px; margin-right: 45px; font-size: 15px;
+                   text-indent: 20px"),
+      style = "height: 390px; background-color: #f5f5f5; border-radius:
+             25px; border-right: 3px solid #C44B4F; border-bottom: 3px solid
+             #C44B4F;")
+           
+           )
+  )
               )
   )
 )

@@ -13,6 +13,7 @@ dataset <- dataset%>%
   filter(Year >= "1980")
 
 server <- function(input, output) {
+
 #CARRIE#
 filtered <- reactive({
   filtered <- dataset %>%
@@ -45,15 +46,9 @@ plot_m <- ggplot(filtered(), aes(x = NOC, y = count, fill = Medal)) +
        axis.text.x = element_text(size = 13))
 plot_m
 #########
-}, height = 800, width = 800)
+}, height = 800, width = 860)
 #Hedy#
-height_weight_Age_info <- dataset %>%
-  select(Year, Height, Weight, Age, Sex)%>%
-  filter(!is.na(Height) & !is.na(Weight) & !is.na(Age))
 
-plot_data <- height_weight_Age_info %>% 
-  group_by(Year, Sex) %>%
-  summarise("Height" = mean(Height), "Weight" = mean(Weight), "Age" = mean(Age))
 output$graph <- renderPlot({
   if(input$gender == "Both") {
     p <- ggplot(data = plot_data, mapping = aes_string(x=plot_data$Year, y=input$Type, 
@@ -82,6 +77,6 @@ output$graph <- renderPlot({
       labs(paste0(title="The Trendline of Athletes' ", input$Type))
   }
   return(p)
-})
+}, height = 800, width = 860)
 }
 # shinyApp(ui = my.ui, server = server)

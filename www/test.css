@@ -1,0 +1,48 @@
+body{
+	background-image:url("background.jpeg");
+}
+
+#Header{
+	margin-left: 30px;
+	margin-bottom: 10px;
+}
+
+#Header h1{
+	font-size: 35px;
+	font-family: "arial";
+	color: #313131;
+	font-weight: bold;
+}
+
+#LeftPanel{
+	float: left;
+	width: 350px;
+	margin-top: 100px;
+}
+
+
+#RightPanel{
+	float: right;
+	width: 850px;
+	margin-right: 120px;
+	margin-bottom: 5px;
+	border-left: 3px solid #C44B4F;
+	text-align: left;
+	padding: 15px;
+	font-family: "arial";
+	font-size: 18px;
+	color: #686361;
+	
+}
+
+#RightBottom{
+	font-family: "arial";
+	font-size: 18px;
+	color: #C44B4F;
+
+}
+#image2{
+	margin-right: 60px;
+	margin-bottom: 75px;
+}
+
