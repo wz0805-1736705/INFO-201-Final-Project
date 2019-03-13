@@ -96,15 +96,16 @@ tabPanel("Sports distribution by countries",
                          choices = c("M", "F"),
                          selected = "M"),
              selectInput("sport", "Choose a sport",
-                         choices = c("Athletics", "Badminton", "Basketball", "Boxing", "Cross country skiing", "Football", "Gymnastics", "Ice hockey", "Rowing", "Speed Skating", "Swimming", "Sailing"),
+                         choices = c("Athletics", "Badminton", "Basketball", "Boxing", "Cross Country Skiing", "Football", "Gymnastics", "Ice Hockey", "Rowing", "Speed Skating", "Swimming", "Sailing"),
                          selected = "Athletics"),
              helpText("These two drop down menu options allows you to visualize the male and female sports distributions by countries.")
            ),
            
            mainPanel(
              plotOutput("bargraph")
-           )
-         ),
+          )
+        )
+      ),
          
 ####CARRIE####
     tabPanel("Medal Count of Gender at the Olympics",

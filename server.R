@@ -22,7 +22,7 @@ server <- function(input, output) {
       arrange(Team) %>% 
       group_by(Team) %>%
       summarize(count = n()) %>% 
-      top_n(100, wt=count)
+      top_n(75, wt=count)
     
     return(filtered)
   })
@@ -31,15 +31,15 @@ server <- function(input, output) {
     plot_m <- ggplot(filtered_data(), aes(x = Team, y = count)) +
       geom_col(width = 1) +
       coord_flip() +
-      ggtitle(paste0("Sports distribution for",input$sex,
-                     "of",input$sport)) +
-      scale_fill_manual(value = c("red")) +
+      ggtitle(paste0("Sports distribution for", input$sex ,
+                     "who participated in Olympic", input$sport, "since 1980")) +
+      scale_fill_manual(values = c("#999999", "#E69F00", "#56B4E9"))  +
       theme(plot.title = element_text(size = 15, face = "bold"),
             axis.text.y = element_text(size = 13),
             axis.text.x = element_text(size = 13))
     return(plot_m)
     #########
-  }, height = 800, width = 860)
+  }, height = 2000, width = 860)
   
 #CARRIE#
 filtered <- reactive({
