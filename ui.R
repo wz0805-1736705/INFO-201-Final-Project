@@ -160,16 +160,18 @@ ui <- fluidPage(
           div(
             div(br(), h2("Summary"), style = "margin-left: 45px"),
             div(
-              p("Each bar on this graph illustrates the medal count of
-              the specific country in the specific year of the Olympics Games.
-              We can see a notably growing number of countries with more
-              female athletics paticiapted in the Olympics and earned
-              more medals in the game. It is also worth noticing that
-              women athletics from USA were earning more medals compared
-              to male athletics did since 2000. For Canada, female athletics
-              did better than male after 2008 with significant difference of
-              the total medals in 2016. Also, countries such as India
-              earned 2 medals in the 2016 Olympics all by women athletics."),
+              p("This interactive visualization page summarizes the male or female
+                athletes of the Top 75 countries in their respective Olympic sports 
+                program. From this visualization, we can see a trend of overwhelming 
+                male to female differences in certain sports like: Boxing, Football, 
+                Ice Hockey, Etc. These programs are also considered as 'male dominant 
+                sports'. In addition, we can interpret which countries have a more 
+                mature sports program by looking at their total number of male and 
+                female athletes. For example, the United States and Australia clearly 
+                have a greater sum of players in their programs than the other countries, 
+                meaning they have a more mature program than the other countries. 
+                Users could explore more using the drop down menu and interpret the data 
+                furthermore."),
               style = "margin-left: 45px; margin-right: 45px; font-size: 15px;
             text-indent: 20px"
             ),
