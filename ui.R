@@ -4,7 +4,10 @@ library("plotly")
 library("shiny")
 library("ggplot2")
 library("dplyr")
-
+library("styler")
+library("lintr")
+style_file("ui.R")
+lint("ui.R")
 
 # Filter the dataset
 height_weight_Age_info <- dataset %>%
@@ -161,7 +164,6 @@ ui <- fluidPage(
           div(
             div(br(), h2("Summary"), style = "margin-left: 45px"),
             div(
-              # Summary
               p("This interactive visualization page summarizes the male or
                 female athletes of the Top 75 countries in their respective
                 Olympic sports program. From this visualization, we can see
