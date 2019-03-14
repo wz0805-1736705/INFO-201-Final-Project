@@ -1,10 +1,6 @@
 library("dplyr")
 library("ggplot2")
 library("shiny")
-#library("styler")
-#library("lintr")
-# style_file("server.R")
-#lint("server.R")
 source("ui.R")
 
 dataset <- read.csv("data/athlete_events.csv", stringsAsFactors = F)

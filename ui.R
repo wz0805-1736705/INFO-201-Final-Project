@@ -3,10 +3,7 @@ library("plotly")
 library("shiny")
 library("ggplot2")
 library("dplyr")
-#library("styler")
-#library("lintr")
-#style_file("ui.R")
-#lint("ui.R")
+
 height_weight_Age_info <- dataset %>%
   select(Year, Height, Weight, Age, Sex) %>%
   filter(!is.na(Height) & !is.na(Weight) & !is.na(Age))
@@ -174,7 +171,7 @@ ui <- fluidPage(
               style = "margin-left: 45px; margin-right: 45px; font-size: 15px;
             text-indent: 20px"
             ),
-            style = "height: 390px; width: 440px; margin-left: 16px;
+            style = "height: 490px; width: 440px; margin-left: 16px;
                    float: left;
                    background-color: #f5f5f5; border-radius: 25px;
                    border-right: 3px solid #C44B4F; border-bottom:
