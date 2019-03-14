@@ -53,7 +53,7 @@ server <- function(input, output, session) {
   # Plotout graph for male or female
   output$bargraph <- renderPlot({
     if (input$sex == "M") {
-      plot_g <- ggplot(filtered_data(), aes(x = Team, y = count)) +
+      plot_g <- ggplot(filtered_data(), aes(x = reorder(Team, count), y = count)) +
         geom_col(width = 0.8) +
         coord_flip() +
         ggtitle(paste0(
@@ -89,7 +89,7 @@ server <- function(input, output, session) {
     #Return plot
     return(plot_g)
   },
-  height = 1500, width = 860
+  height = 1500, width = 850
   )
 
   # CARRIE: Interactive page 2#

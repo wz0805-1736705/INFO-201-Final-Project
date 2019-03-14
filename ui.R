@@ -147,15 +147,14 @@ ui <- fluidPage(
           ),
           style = "margin-left: 75px; margin-right: 75px;"
           ),
-          style = "height: 350px; width: 440px; margin-left: 16px; float: left;
-                 background-color: #f5f5f5;border-radius: 25px;
-                 border-right: 3px solid #C44B4F;
-                 border-bottom: 3px solid #C44B4F;"
+          style = "height: 350px; background-color: #f5f5f5; width: 433px;
+                     border-radius: 25px; border-right: 3px solid #C44B4F;
+                     border-bottom: 3px solid #C44B4F;margin-left: 15px"
         ),
         column(
           width = 8,
-          plotOutput("bargraph")
-        ),
+          div(plotOutput("bargraph"), style = "float: right")
+        )),
         fluidRow(column(
           width = 4,
           div(
@@ -175,18 +174,16 @@ ui <- fluidPage(
                 countries, meaning they have a more mature program than the
                 other countries. Users could explore more using the drop down
                 menu and interpret the data furthermore."),
-              style = "margin-left: 45px; margin-right: 45px; font-size: 15px;
-            text-indent: 20px"
+              style = "margin-left: 45px; margin-right: 45px;
+                           font-size: 15px; text-indent: 20px"
             ),
-            style = "height: 490px; width: 440px; margin-left: 16px;
-                   float: left;
-                   background-color: #f5f5f5; border-radius: 25px;
-                   border-right: 3px solid #C44B4F; border-bottom:
-                   3px solid #C44B4F;"
+            style = "height: 470px; background-color: #f5f5f5; border-radius:
+                       25px; border-right: 3px solid #C44B4F; border-bottom:
+                       3px solid #C44B4F;"
           )
         ))
       )
-    ),
+    ,
     ######  CARRIE######
     # interactive page 2
     tabPanel(
