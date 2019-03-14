@@ -52,8 +52,10 @@ ui <- fluidPage(
                        90px;text-indent: 20px;"),
             p("In our project, our team members are going to have an
                        in-depth study for both male and femal athletes from
-                       1980 to 2016 Oylmpic Games. We will compare them from
-                       three different aspects,",
+              1980 to 2016 Oylmpic Games. Audiences who interest in
+              female and male athletes performances could gain a 
+              detailed information from various perspectives. 
+              We will compare them from three different aspects,",
               strong("Personal Information (Height, Weight, Age)"), ",",
               strong("Medal Numbers (Gold, Silver, Bronze)"),
               ", and",
@@ -117,7 +119,7 @@ ui <- fluidPage(
     ###### GRANT######
     # interactive page 1
     tabPanel(
-      "Sports distribution by countries",
+      "Sports Distribution by Countries",
       titlePanel(
         tags$body(
           tags$link(rel = "stylesheet", type = "text/css", href = "test.css"),
@@ -150,15 +152,14 @@ ui <- fluidPage(
           ),
           style = "margin-left: 75px; margin-right: 75px;"
           ),
-          style = "height: 350px; width: 440px; margin-left: 16px; float: left;
-                 background-color: #f5f5f5;border-radius: 25px;
-                 border-right: 3px solid #C44B4F;
-                 border-bottom: 3px solid #C44B4F;"
+          style = "height: 350px; background-color: #f5f5f5; width: 433px;
+                     border-radius: 25px; border-right: 3px solid #C44B4F;
+                     border-bottom: 3px solid #C44B4F;margin-left: 15px"
         ),
         column(
           width = 8,
-          plotOutput("bargraph")
-        ),
+          div(plotOutput("bargraph"), style = "float: right")
+        )),
         fluidRow(column(
           width = 4,
           div(
@@ -177,22 +178,20 @@ ui <- fluidPage(
                 countries, meaning they have a more mature program than the
                 other countries. Users could explore more using the drop down
                 menu and interpret the data furthermore."),
-              style = "margin-left: 45px; margin-right: 45px; font-size: 15px;
-            text-indent: 20px"
+              style = "margin-left: 45px; margin-right: 45px;
+                           font-size: 15px; text-indent: 20px"
             ),
-            style = "height: 490px; width: 440px; margin-left: 16px;
-                   float: left;
-                   background-color: #f5f5f5; border-radius: 25px;
-                   border-right: 3px solid #C44B4F; border-bottom:
-                   3px solid #C44B4F;"
+            style = "height: 470px; background-color: #f5f5f5; border-radius:
+                       25px; border-right: 3px solid #C44B4F; border-bottom:
+                       3px solid #C44B4F;"
           )
         ))
       )
-    ),
+    ,
     ######  CARRIE######
     # interactive page 2
     tabPanel(
-      "Medal Count of Gender at the Olympics",
+      "Medal Count of Gender by Countries",
       titlePanel(
         tags$body(
           tags$link(rel = "stylesheet", type = "text/css", href = "test.css"),
@@ -219,11 +218,12 @@ ui <- fluidPage(
             selectInput("Country", h4("Select the Country"), choices = NULL),
             helpText("This interactive allows you to select one year of
                       Olympics Games from 1980 to 2016 and one country to
-                      see statistics of medal of female and male. Nobody get
-                     medals if blank."),
+                      see statistics of medal of female and male. Blank graph
+                     indicates no medals gained for the specific country at the 
+                     choosen game."),
             style = "margin-left: 75px; margin-right: 75px;"
           ),
-          style = "height: 350px; background-color: #f5f5f5;
+          style = "height: 380px; background-color: #f5f5f5;
                      border-radius: 25px; border-right: 3px solid #C44B4F;
                      border-bottom: 3px solid #C44B4F;"
           )
@@ -241,15 +241,14 @@ ui <- fluidPage(
             # Summary
             p("Each bar on this graph illustrates the medal count of
                     the specific country in the specific year of the Olympics
-                    Games. We can see a notably growing number of countries
-                    with more female athletics paticiapted in the Olympics
-                    and earnedmore medals in the game. It is also worth
-                    noticing that women athletics from USA were earning
-                    more medals compared to male athletics did since 2000.
-                    For Canada, female athletics did better than male after
-                    2008 with significant difference of the total medals in
-                    2016. Also, countries such as India earned 2 medals in
-                    the 2016 Olympics all by women athletics."),
+              Games. We can see a notably growing number of female athletics
+              paticiapted in the Olympics Games and earned more medals in
+              the game. It is also worth noticing that women athletics
+              from USA were earning more medals compared to male athletics
+              did since 2000. For Canada, female athletics did better than
+              male after 2008 with significant difference of the total medals in
+              2016. Also, countries such as India earned 2 medals in
+              the 2016 Olympics all by women athletics."),
             style = "margin-left: 45px; margin-right: 45px;
                            font-size: 15px; text-indent: 20px"
           ),
