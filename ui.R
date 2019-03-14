@@ -147,12 +147,13 @@ ui <- fluidPage(
             ),
             helpText("These two drop down menu options allows you to visualize
                  the male and female sports distributions by countries."),
-          style = "margin-left: 75px; margin-right: 75px;"
+            style = "margin-left: 75px; margin-right: 75px;"
           ),
           style = "height: 350px; background-color: #f5f5f5;
                      border-radius: 25px; border-right: 3px solid #C44B4F;
                      border-bottom: 3px solid #C44B4F;"
-        )),
+          )
+        ),
         column(
           width = 8,
           div(plotOutput("bargraph"), style = "float: right")

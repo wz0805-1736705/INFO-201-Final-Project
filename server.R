@@ -76,7 +76,10 @@ server <- function(input, output, session) {
         axis.text.x = element_text(size = 13)
       )
     } else if (input$sex == "F") {
-      plot_g <- ggplot(filtered_data(), aes(x = reorder(Team, count), y = count)) +
+      plot_g <- ggplot(filtered_data(), aes(
+        x = reorder(Team, count),
+        y = count
+      )) +
         geom_col(width = 0.8) +
         coord_flip() +
         xlab("Country") +
@@ -199,7 +202,7 @@ server <- function(input, output, session) {
         geom_point(color = "#00BFC4") +
         geom_line(color = "#00BFC4") +
         xlab("Year") +
-        ggtitle ( (paste0("Trendline of Male Athletes' ", input$Type))) +
+        ggtitle((paste0("Trendline of Male Athletes' ", input$Type))) +
         labs(paste0(title = "The Trendline of Athletes' ", input$Type)) +
         theme(
           plot.title = element_text(size = 15, face = "bold"),
