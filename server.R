@@ -76,7 +76,7 @@ server <- function(input, output, session) {
         axis.text.x = element_text(size = 13)
       )
     } else if (input$sex == "F") {
-      plot_g <- ggplot(filtered_data(), aes(x = Team, y = count)) +
+      plot_g <- ggplot(filtered_data(), aes(x = reorder(Team, count), y = count)) +
         geom_col(width = 0.8) +
         coord_flip() +
         xlab("Country") +
