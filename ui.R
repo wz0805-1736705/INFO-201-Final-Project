@@ -174,8 +174,9 @@ ui <- fluidPage(
                 For example, the United States and Australia clearly have a
                 greater sum of players in their programs than the other
                 countries, meaning they have a more mature program than the
-                other countries. Users could explore more using the drop down
-                menu and interpret the data furthermore."),
+                other countries. In some of those sports, it will show
+                numbers after country name, which means they have the same
+                player for more than one year."),
             style = "margin-left: 45px; margin-right: 45px;
                            font-size: 15px; text-indent: 20px"
           ),

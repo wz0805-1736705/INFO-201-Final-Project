@@ -5,8 +5,8 @@ account: wz0805-1736705
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 788850
-bundleId: 1938530
+bundleId: 1940805
 url: https://wz0805-1736705.shinyapps.io/INFO-201-Final-Project/
-when: 1552539499.28545
+when: 1552601086.93102
 asMultiple: FALSE
 asStatic: FALSE
