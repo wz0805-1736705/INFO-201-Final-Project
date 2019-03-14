@@ -37,7 +37,7 @@ server <- function(input, output, session) {
   })
 
   # GRANT: Interactive page 1#
-  # Filter the data 
+  # Filter the data
   filtered_data <- reactive({
     filtered <- dataset %>%
       filter(
@@ -53,7 +53,10 @@ server <- function(input, output, session) {
   # Plotout graph for male or female
   output$bargraph <- renderPlot({
     if (input$sex == "M") {
-      plot_g <- ggplot(filtered_data(), aes(x = reorder(Team, count), y = count)) +
+      plot_g <- ggplot(filtered_data(), aes(
+        x = reorder(Team, count),
+        y = count
+      )) +
         geom_col(width = 0.8) +
         coord_flip() +
         ggtitle(paste0(
@@ -62,8 +65,11 @@ server <- function(input, output, session) {
           1980"
         )) +
         xlab("Country") +
-        geom_bar(stat="identity", fill="#56B4E9") +
-        geom_text(aes(label=count), position=position_dodge(width= 1), hjust= -0.25)
+        geom_bar(stat = "identity", fill = "#56B4E9") +
+        geom_text(aes(label = count),
+          position = position_dodge(width = 1),
+          hjust = -0.25
+        )
       theme(
         plot.title = element_text(size = 15, face = "bold"),
         axis.text.y = element_text(size = 13),
@@ -79,14 +85,18 @@ server <- function(input, output, session) {
           " who participated in Olympic ", input$sport, " since
         1980"
         )) +
-        geom_bar(stat="identity", fill="#FF9999") +
-        geom_text(aes(label=count), position=position_dodge(width= 1), hjust= -0.25)
+        geom_bar(stat = "identity", fill = "#FF9999") +
+        geom_text(aes(label = count),
+          position = position_dodge(width = 1),
+          hjust = -0.25
+        )
       theme(
         plot.title = element_text(size = 15, face = "bold"),
         axis.text.y = element_text(size = 13),
         axis.text.x = element_text(size = 13)
-      )}
-    #Return plot
+      )
+    }
+    # Return plot
     return(plot_g)
   },
   height = 1500, width = 850
@@ -189,7 +199,7 @@ server <- function(input, output, session) {
         geom_point(color = "#00BFC4") +
         geom_line(color = "#00BFC4") +
         xlab("Year") +
-        ggtitle((paste0("Trendline of Male Athletes' ", input$Type))) +
+        ggtitle ( (paste0("Trendline of Male Athletes' ", input$Type))) +
         labs(paste0(title = "The Trendline of Athletes' ", input$Type)) +
         theme(
           plot.title = element_text(size = 15, face = "bold"),

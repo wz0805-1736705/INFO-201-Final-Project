@@ -4,10 +4,8 @@ library("plotly")
 library("shiny")
 library("ggplot2")
 library("dplyr")
-library("styler")
-library("lintr")
-style_file("ui.R")
-lint("ui.R")
+
+
 
 # Filter the dataset
 height_weight_Age_info <- dataset %>%
@@ -53,8 +51,8 @@ ui <- fluidPage(
             p("In our project, our team members are going to have an
                        in-depth study for both male and femal athletes from
               1980 to 2016 Oylmpic Games. Audiences who interest in
-              female and male athletes performances could gain a 
-              detailed information from various perspectives. 
+              female and male athletes performances could gain a
+              detailed information from various perspectives.
               We will compare them from three different aspects,",
               strong("Personal Information (Height, Weight, Age)"), ",",
               strong("Medal Numbers (Gold, Silver, Bronze)"),
@@ -159,13 +157,14 @@ ui <- fluidPage(
         column(
           width = 8,
           div(plotOutput("bargraph"), style = "float: right")
-        )),
-        fluidRow(column(
-          width = 4,
+        )
+      ),
+      fluidRow(column(
+        width = 4,
+        div(
+          div(br(), h2("Summary"), style = "margin-left: 45px"),
           div(
-            div(br(), h2("Summary"), style = "margin-left: 45px"),
-            div(
-              p("This interactive visualization page summarizes the male or
+            p("This interactive visualization page summarizes the male or
                 female athletes of the Top 75 countries in their respective
                 Olympic sports program. From this visualization, we can see
                 a trend of overwhelming male to female differences in certain
@@ -178,16 +177,15 @@ ui <- fluidPage(
                 countries, meaning they have a more mature program than the
                 other countries. Users could explore more using the drop down
                 menu and interpret the data furthermore."),
-              style = "margin-left: 45px; margin-right: 45px;
+            style = "margin-left: 45px; margin-right: 45px;
                            font-size: 15px; text-indent: 20px"
-            ),
-            style = "height: 470px; background-color: #f5f5f5; border-radius:
+          ),
+          style = "height: 470px; background-color: #f5f5f5; border-radius:
                        25px; border-right: 3px solid #C44B4F; border-bottom:
                        3px solid #C44B4F;"
-          )
-        ))
-      )
-    ,
+        )
+      ))
+    ),
     ######  CARRIE######
     # interactive page 2
     tabPanel(
@@ -219,7 +217,7 @@ ui <- fluidPage(
             helpText("This interactive allows you to select one year of
                       Olympics Games from 1980 to 2016 and one country to
                       see statistics of medal of female and male. Blank graph
-                     indicates no medals gained for the specific country at the 
+                     indicates no medals gained for the specific country at the
                      choosen game."),
             style = "margin-left: 75px; margin-right: 75px;"
           ),
