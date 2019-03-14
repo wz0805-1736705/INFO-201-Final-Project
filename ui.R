@@ -3,9 +3,9 @@ library("plotly")
 library("shiny")
 library("ggplot2")
 library("dplyr")
-# library("styler")
+library("styler")
 library("lintr")
-# style_file("ui.R")
+style_file("ui.R")
 lint("ui.R")
 height_weight_Age_info <- dataset %>%
   select(Year, Height, Weight, Age, Sex) %>%
@@ -57,8 +57,7 @@ ui <- fluidPage(
             ),
             p("Our project draws on data from",
               a("120 years of Olympic history: athletes and results",
-                href = "https://www.kaggle.com/heesoo37/120
-                              -years-of-olympic-history-athletes-and-results",
+                href = "https://www.kaggle.com/heesoo37/120-years-of-olympic-history-athletes-and-results",
                 style = "color: #145DA0;"
               ),
               "from Kaggle user",
@@ -102,8 +101,7 @@ ui <- fluidPage(
             p(
               "Source Code: ",
               a("GitHub",
-                href = "https://github.com/wz0805-1736705/
-                              INFO-201-Final-Project",
+                href = "https://github.com/wz0805-1736705/INFO-201-Final-Project",
                 style = "color: #145DA0;"
               )
             )
@@ -141,8 +139,8 @@ ui <- fluidPage(
               ),
               selected = "Athletics"
             ),
-            helpText("These two drop down menu options allows you to visualize the
-                 male and female sports distributions by countries.")
+            helpText("These two drop down menu options allows you to visualize
+                 the male and female sports distributions by countries.")
           ),
           style = "margin-left: 75px; margin-right: 75px;"
           ),
@@ -160,22 +158,24 @@ ui <- fluidPage(
           div(
             div(br(), h2("Summary"), style = "margin-left: 45px"),
             div(
-              p("This interactive visualization page summarizes the male or female
-                athletes of the Top 75 countries in their respective Olympic sports 
-                program. From this visualization, we can see a trend of overwhelming 
-                male to female differences in certain sports like: Boxing, Football, 
-                Ice Hockey, Etc. These programs are also considered as 'male dominant 
-                sports'. In addition, we can interpret which countries have a more 
-                mature sports program by looking at their total number of male and 
-                female athletes. For example, the United States and Australia clearly 
-                have a greater sum of players in their programs than the other countries, 
-                meaning they have a more mature program than the other countries. 
-                Users could explore more using the drop down menu and interpret the data 
-                furthermore."),
+              p("This interactive visualization page summarizes the male or
+                female athletes of the Top 75 countries in their respective
+                Olympic sports program. From this visualization, we can see
+                a trend of overwhelming male to female differences in certain
+                sports like: Boxing, Football, Ice Hockey, Etc. These programs
+                are also considered as 'male dominant sports'. In addition, we
+                can interpret which countries have a more mature sports program
+                by looking at their total number of male and female athletes.
+                For example, the United States and Australia clearly have a
+                greater sum of players in their programs than the other
+                countries, meaning they have a more mature program than the
+                other countries. Users could explore more using the drop down
+                menu and interpret the data furthermore."),
               style = "margin-left: 45px; margin-right: 45px; font-size: 15px;
             text-indent: 20px"
             ),
-            style = "height: 390px; width: 440px; margin-left: 16px; float: left;
+            style = "height: 390px; width: 440px; margin-left: 16px;
+                   float: left;
                    background-color: #f5f5f5; border-radius: 25px;
                    border-right: 3px solid #C44B4F; border-bottom:
                    3px solid #C44B4F;"
