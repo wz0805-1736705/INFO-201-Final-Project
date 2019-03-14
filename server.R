@@ -3,10 +3,7 @@ library("dplyr")
 library("ggplot2")
 library("shiny")
 source("ui.R")
-library("styler")
-library("lintr")
-style_file("ui.R")
-lint("ui.R")
+
 
 # Read in the dataset
 dataset <- read.csv("data/athlete_events.csv", stringsAsFactors = F)
@@ -40,6 +37,7 @@ server <- function(input, output, session) {
   })
 
   # GRANT: Interactive page 1#
+  # Filter the data 
   filtered_data <- reactive({
     filtered <- dataset %>%
       filter(
@@ -52,23 +50,43 @@ server <- function(input, output, session) {
       top_n(75, wt = count)
     return(filtered)
   })
-  # Assign a reactive `renderPlot()`
-  # function to the outputted 'bargraph' value
+  # Plotout graph for male or female
   output$bargraph <- renderPlot({
-    plot_g <- ggplot(filtered_data(), aes(x = Team, y = count)) +
-      geom_col(width = 0.8) +
-      coord_flip() +
-      ggtitle(paste0(
-        "Sports distribution for ", input$sex,
-        " who participated in Olympic ", input$sport, " since
-                     1980"
-      )) +
-      scale_fill_manual(values = c("#999999", "#E69F00", "#56B4E9")) +
+    if (input$sex == "M") {
+      plot_g <- ggplot(filtered_data(), aes(x = Team, y = count)) +
+        geom_col(width = 0.8) +
+        coord_flip() +
+        ggtitle(paste0(
+          "Sports distribution for ", input$sex,
+          " who participated in Olympic ", input$sport, " since
+          1980"
+        )) +
+        xlab("Country") +
+        geom_bar(stat="identity", fill="#56B4E9") +
+        geom_text(aes(label=count), position=position_dodge(width= 1), hjust= -0.25)
       theme(
         plot.title = element_text(size = 15, face = "bold"),
         axis.text.y = element_text(size = 13),
         axis.text.x = element_text(size = 13)
       )
+    } else if (input$sex == "F") {
+      plot_g <- ggplot(filtered_data(), aes(x = Team, y = count)) +
+        geom_col(width = 0.8) +
+        coord_flip() +
+        xlab("Country") +
+        ggtitle(paste0(
+          "Sports distribution for ", input$sex,
+          " who participated in Olympic ", input$sport, " since
+        1980"
+        )) +
+        geom_bar(stat="identity", fill="#FF9999") +
+        geom_text(aes(label=count), position=position_dodge(width= 1), hjust= -0.25)
+      theme(
+        plot.title = element_text(size = 15, face = "bold"),
+        axis.text.y = element_text(size = 13),
+        axis.text.x = element_text(size = 13)
+      )}
+    #Return plot
     return(plot_g)
   },
   height = 1500, width = 860
