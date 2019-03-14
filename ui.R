@@ -175,12 +175,12 @@ ui <- fluidPage(
                 greater sum of players in their programs than the other
                 countries, meaning they have a more mature program than the
                 other countries. In some of those sports, it will show
-                numbers after country name, which means they have the same
-                player for more than one year."),
+                numbers after the country name, which means they have the same
+                player for more than one year of Olympic Games."),
             style = "margin-left: 45px; margin-right: 45px;
                            font-size: 15px; text-indent: 20px"
           ),
-          style = "height: 470px; background-color: #f5f5f5; border-radius:
+          style = "height: 490px; background-color: #f5f5f5; border-radius:
                        25px; border-right: 3px solid #C44B4F; border-bottom:
                        3px solid #C44B4F;"
         )
