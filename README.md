@@ -2,9 +2,9 @@
 
 ## Project Description
 This ShinyApp aims to explore detailed and in-depth information about the **Olympics Games** with specifically focusing on
-_gender_ perspectives. We will investigate the how male and female participants performed differently in different sports,
+_gender_ perspectives. We will investigate how male and female participants performed differently in different sports,
 the medals they earned, and trends of their personal information such as height, weight and ages.  We can see how women
-power is dramatically growing over the past years.
+power is dramatically growing over the past decades.
 
 Link to ShinyApp:
 
