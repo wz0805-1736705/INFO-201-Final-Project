@@ -1,9 +1,15 @@
+# Load needed libraries
 library("shinythemes")
 library("plotly")
 library("shiny")
 library("ggplot2")
 library("dplyr")
+library("styler")
+library("lintr")
+style_file("ui.R")
+lint("ui.R")
 
+# Filter the dataset
 height_weight_Age_info <- dataset %>%
   select(Year, Height, Weight, Age, Sex) %>%
   filter(!is.na(Height) & !is.na(Weight) & !is.na(Age))
@@ -12,10 +18,12 @@ plot_data <- height_weight_Age_info %>%
   group_by(Year, Sex) %>%
   summarise("Height" = mean(Height), "Weight" = mean(Weight), "Age" = mean(Age))
 
+# Define a UI using a `fluidPage()` layout
 ui <- fluidPage(
   navbarPage(
     "Olympics Games Interactive Statistics",
-    ##### Alex######
+    ###### Alex######
+    # Add introduction part
     tabPanel(
       "Introduction",
       titlePanel(
@@ -106,7 +114,8 @@ ui <- fluidPage(
         ))
       )
     ),
-    #### GRANT####
+    ###### GRANT######
+    # interactive page 1
     tabPanel(
       "Sports distribution by countries",
       titlePanel(
@@ -180,7 +189,8 @@ ui <- fluidPage(
         ))
       )
     ),
-    #### CARRIE####
+    ######  CARRIE######
+    # interactive page 2
     tabPanel(
       "Medal Count of Gender at the Olympics",
       titlePanel(
@@ -195,20 +205,23 @@ ui <- fluidPage(
       fluidRow(
         column(
           width = 4,
-          div(div(br(), br(), selectInput("year",
-            label = h4("Select the Games"),
-            choices =
-              c(
-                "1980", "1984", "1988", "1992", "1996",
-                "2000", "2004", "2008", "2012", "2016"
-              ), selected = "2016"
-          ),
-          selectInput("Country", h4("Select the Country"), choices = NULL),
-          helpText("This interactive allows you to select one year of
+          div(div(br(), br(),
+            # This dropdown let the user to pick one of the year of Olympics
+            selectInput("year",
+              label = h4("Select the Games"),
+              choices =
+                c(
+                  "1980", "1984", "1988", "1992", "1996",
+                  "2000", "2004", "2008", "2012", "2016"
+                ), selected = "2016"
+            ),
+            # This dropdown let the user to pick one of the country
+            selectInput("Country", h4("Select the Country"), choices = NULL),
+            helpText("This interactive allows you to select one year of
                       Olympics Games from 1980 to 2016 and one country to
                       see statistics of medal of female and male. Nobody get
                      medals if blank."),
-          style = "margin-left: 75px; margin-right: 75px;"
+            style = "margin-left: 75px; margin-right: 75px;"
           ),
           style = "height: 350px; background-color: #f5f5f5;
                      border-radius: 25px; border-right: 3px solid #C44B4F;
@@ -225,6 +238,7 @@ ui <- fluidPage(
         div(
           div(br(), h2("Summary"), style = "margin-left: 45px"),
           div(
+            # Summary
             p("Each bar on this graph illustrates the medal count of
                     the specific country in the specific year of the Olympics
                     Games. We can see a notably growing number of countries
@@ -245,7 +259,8 @@ ui <- fluidPage(
         )
       ))
     ),
-    ##### Hedy####
+    ######  Hedy######
+    # interactive page 3
     tabPanel(
       "Trends of Personal Information",
       tags$body(
@@ -259,9 +274,11 @@ ui <- fluidPage(
         column(
           width = 4,
           div(div(br(), br(), br(),
+            # This dropdown let the user to pick one of the type
             selectInput("Type", h4("Choose a Type:"),
               choices = colnames(plot_data[, 3:5])
             ),
+            # This dropdown let the user to pick one of the gender
             selectInput("gender", h4("Select the gender:"),
               choices = c("M", "F", "Both"),
               selected = 1
@@ -286,6 +303,7 @@ ui <- fluidPage(
         div(
           div(br(), h2("Summary"), style = "margin-left: 45px"),
           div(br(),
+            # Summary
             p("The trendlines show the change of height, weight, and
             age of athletes in different gender for all the countries.
             It shows an increasing trends for all three personal info for

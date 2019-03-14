@@ -1,15 +1,25 @@
+# Load needed libraries
 library("dplyr")
 library("ggplot2")
 library("shiny")
 source("ui.R")
+library("styler")
+library("lintr")
+style_file("ui.R")
+lint("ui.R")
 
+# Read in the dataset
 dataset <- read.csv("data/athlete_events.csv", stringsAsFactors = F)
 region_data <- read.csv("data/noc_regions.csv", stringsAsFactors = F)
+# Filter to data of Olympics after 1980
 dataset <- dataset %>%
   filter(Year >= "1980")
 
+# Create a shiny server
 server <- function(input, output, session) {
-  # Alex#
+
+  # Alex: Elements crafted & CSS, introduction page#
+  # Add the countdown timer
   event_time_day <- difftime(as.Date("2020-06-24"), Sys.time(),
     units = "mins"
   ) + 60 * 7
@@ -28,7 +38,8 @@ server <- function(input, output, session) {
     invalidateLater(1000)
     paste(round(time_to_event_day), "DAYS", time_to_event_hour, "HOURS")
   })
-  # GRANT#
+
+  # GRANT: Interactive page 1#
   filtered_data <- reactive({
     filtered <- dataset %>%
       filter(
@@ -41,6 +52,8 @@ server <- function(input, output, session) {
       top_n(75, wt = count)
     return(filtered)
   })
+  # Assign a reactive `renderPlot()`
+  # function to the outputted 'bargraph' value
   output$bargraph <- renderPlot({
     plot_g <- ggplot(filtered_data(), aes(x = Team, y = count)) +
       geom_col(width = 0.8) +
@@ -60,13 +73,17 @@ server <- function(input, output, session) {
   },
   height = 1500, width = 860
   )
-  # CARRIE#
+
+  # CARRIE: Interactive page 2#
+  # Create widget2 that update values based on previous value choosen
   observeEvent(input$year, {
     updateSelectInput(session, "Country",
       choices = unique(dataset$NOC[dataset$Year == input$year]),
       !is.na(dataset$Medal)
     )
   })
+
+  # Filter the data
   filtered <- reactive({
     filtered <- dataset %>%
       filter(
@@ -80,6 +97,8 @@ server <- function(input, output, session) {
     return(filtered)
   })
 
+  # Assign a reactive `renderPlot()`
+  # function to the outputted 'medalplot' value
   output$medalplot <- renderPlot({
     plot_m <- ggplot(filtered(), aes(x = Sex, y = count, fill = Medal)) +
       geom_col(width = 0.8) +
@@ -94,12 +113,15 @@ server <- function(input, output, session) {
         axis.text.y = element_text(size = 13),
         axis.text.x = element_text(size = 13)
       )
+    # return the plot
     plot_m
   },
   height = 800, width = 860
   )
-  # Hedy#
 
+  # Hedy#
+  # Assign a reactive `renderPlot()`
+  # function to the outputted 'graph' value
   output$graph <- renderPlot({
     if (input$gender == "Both") {
       p <- ggplot(data = plot_data, mapping = aes_string(
@@ -157,6 +179,7 @@ server <- function(input, output, session) {
           axis.text.x = element_text(size = 13)
         )
     }
+    # return the plot
     return(p)
   },
   height = 800, width = 860
